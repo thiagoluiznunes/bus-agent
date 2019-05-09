@@ -1,11 +1,10 @@
 import csv
-from delayTime import DelayTime
-from route import Route
+from atraso import TempoDeAtraso
+from rota import Rota
 
-class RoutesGenerator():
+class GerarRotas():
     '''
-        Gera a matriz de rotas com as distâncias e o algoritmos de
-        previsão, se possíveis
+        Gera a matriz de rotas com as distâncias e o algoritmos de previsão
     '''
     def __init__(self, lista_pontos_adj):
         self.lista_pontos_adj = lista_pontos_adj
@@ -26,7 +25,7 @@ class RoutesGenerator():
         for i in range(15):
             aux = []
             for j in range(15):
-                rota = Route(distancias[i][j])  
+                rota = Rota(distancias[i][j])  
 
                 if [i, j] in self.lista_pontos_adj \
                     or [j, i] in self.lista_pontos_adj:
@@ -38,7 +37,7 @@ class RoutesGenerator():
                     except ValueError:
                         index = self.lista_pontos_adj.index([j, i])
                     
-                    rota.set_delay_calculator(DelayTime(str(index)))
+                    rota.calcularAtraso(TempoDeAtraso(str(index)))
 
                 aux.append(rota)
             
@@ -60,7 +59,7 @@ if __name__ == "__main__":
                    [4, 6, 7, 11, 14],
                    [2, 4, 5, 6, 7]]
 
-    generator = RoutesGenerator(lista_pontos_adj)
+    generator = GerarRotas(lista_pontos_adj)
     matriz_rotas = generator.gerar_rotas()
     
     print(matriz_rotas)

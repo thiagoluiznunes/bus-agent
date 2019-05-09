@@ -1,11 +1,11 @@
 
-class Route():
+class Rota():
 
     def __init__(self, distancia):
         self.distancia = distancia
         self.delay_calculator = None
     
-    def set_delay_calculator(self, delay_calculator):
+    def calcularAtraso(self, delay_calculator):
         self.delay_calculator = delay_calculator
         self.delay_calculator.treinar()
 
@@ -14,4 +14,4 @@ class Route():
 
     def __repr__(self):
         return "Distancia: " + str(self.distancia) + "\n" \
-                + "Delay: " + str(self.delay_calculator) + "\n"
+                + "Tempo de atraso: " + str(self.delay_calculator) + "\n"
